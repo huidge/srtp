@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>SRTP项目中检PPT</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>基于iBeacon的学生签到系统</h2>
+					<h2>设计与实现 </h2>
+					<div class="home-author">
+    				<p class="subject">河南科技大学SRTP项目中检</p>
+    				<div class="author">
+        				<a href="https://www.guozhihui.top" target="_blank">郭志辉</a>
+    				</div>
+    				<div class="date">2017.12.27</div>
+    				</div>
+				</section>
+				<section>
+					<p>本项目的特点及创新</p>
+					<section>
+						<h1>新技术</h1>
+						<p>基于苹果iBeacon协议的iBeacon通信模块基站和低功耗蓝牙（BLE）4.0技术；</p>
+					</section>
+					<section>
+						<h1>低成本</h1>
+						<p>采用iBeacon设备与手机微信应用相结合方式，记录学生的考勤行为，具有精确、便捷、低成本和部署方便的特点,对于规范管理、提高工作效率具有非常积极的意义和价值；
+					</p>
+					</section>
+					<section>
+						<h1>易推广</h1>
+						<p>系统界面简洁大方，性能稳定，能够满足校园课堂签到并推广到各种会议、讲座；</p>
+					</section>
+					<section>
+						<h1>开源</h1>
+						<p>基于开源数据库MySql,开源服务器软件Apache,开源前端框架WeUI和最新技术标准的Html5、CSS3等,本项目开源项目地址是：<a href="https://github.com/huidge/SignInSystem">https://github.com/huidge/SignInSystem</a>。</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>微信摇一摇接入指南</h2>
+						<img data-src="images/zhinan.png">
+					</section>
+					<section>
+						<h2>iBeacon设备</h2>
+						<img data-src="images/ibeacon.png">
+					</section>
+					<section>
+						<h2>配置流程</h2>
+						<img data-src="images/liucheng.png">
+					</section>
+					<section>
+						<h2>摇一摇效果演示</h2>
+						<img data-src="images/shake.png">
+					</section>
+				</section>
+				<section>
+				<p>签到系统比较</p>
+				<table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>签到系统名称</th>
+                                    <th>特点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<tr>
+                            		<td>1</td>
+                            		<td>基于二维码的会议签到系统设计</td>
+                            		<td>二维码</td>
+                            	</tr>
+                            	<tr>
+                            		<td>2</td>
+                            		<td>基于GPS定位的签到系统</td>
+                            		<td>GPS</td>
+                            	</tr>
+                            	<tr>
+                            		<td>3</td>
+                            		<td>校园一卡通有线网络固定签到</td>
+                            		<td>一卡通</td>
+                            	</tr>
+                            	<tr>
+                            		<td>4</td>
+                            		<td>基于ZigBee技术的会议签到系统设计</td>
+                            		<td>ZigBee</td>
+                            	</tr>
+                            	<tr>
+                            		<td>5</td>
+                            		<td>基于RFID射频卡的B/S模式实验签到系统</td>
+                            		<td>RFID射频卡</td>
+                            	</tr>
+                            	<tr>
+                            		<td>6</td>
+                            		<td>基于NFC近场通讯技术的课堂智能签到系统的设计</td>
+                            		<td>NFC</td>
+                            	</tr>
+                            </tbody>
+                  </table>
+              </section>
+				<section>
+					<h1>签到系统架构</h1>
+					<img data-src="images/jiagou.png">
+				</section>
+				<section>
+					<section>
+					<h1>防代签关键实现步骤</h1>
+					<ul>
+					<li>微信公众号的用户唯一标识openid</li>
+					<li>GPS定位距离检测</li>
+					</ul>
+					</section>
+					<section>
+					<ul>
+					<h3>微信公众号的用户唯一标识openid</h3>
+					</ul>
+					<div>
+						<ol>
+						<li>如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。</li>
+						<li>OpenID是公众号的普通用户的一个唯一的标识，开发者可通过OpenID来获取用户基本信息，只要获得OpenID，就可以相继获得用户的一些信息，如：所在城市、省份、国家、姓别等</li>
+						</ol>
+					</div>
+					</section>
+					<section>
+					<ul>
+					<h3>GPS定位距离检测</h3>
+					</ul>
+    					<div class="highlighter-rouge">
+    						<pre class="highlight">
+    						<code>
+/**
+* @desc 根据两点间的经纬度计算距离
+* @param float $lat 纬度值
+* @param float $lng 经度值
+*/
+function getDistance($lat1, $lng1, $lat2, $lng2) {
+$earthRadius = 6370996;
+$lat1 = ($lat1 * pi() ) / 180;
+$lng1 = ($lng1 * pi() ) / 180;
+$lat2 = ($lat2 * pi() ) / 180;
+$lng2 = ($lng2 * pi() ) / 180;
+$calcLongitude = $lng2 - $lng1;
+$calcLatitude = $lat2 - $lat1;
+$stepOne = pow(sin($calcLatitude / 2), 2) + cos($lat1) * cos($lat2) * pow(sin($calcLongitude / 2), 2);
+$stepTwo = 2 * asin(min(1, sqrt($stepOne)));
+$calculatedDistance = $earthRadius * $stepTwo;
+return round($calculatedDistance);
+							</code>
+						</pre>
+					</div>
+					</section>
+				</section>
+				<section>
+					<h1><a href="http://sign.huidge.top/upSign">项目成果展示</a></h1>
+					<img data-src="images/qrcode.png">
+				</section>
+				<section>
+					<h1>存在问题及原因</h1>
+					<ol>
+						<li>域名购买，配置安全域名</li>
+						<li>云服务器续费</li>
+						<li>缺少iBeacon智能硬件设备</li>
+						<li>无法认证微信公众平台,部分api接口无法调用</li>
+					</ol>
+				</section>
+				<section>
+					<h1>下一步规划</h1>
+					<ol>
+						<li>认证微信公众平台，对接微信接口；</li>
+						<li>购买智能硬件设备，配合教师测试签到系统。</li>
+					</ol>
+				</section>
+				<section><h1>谢谢</h1></section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
